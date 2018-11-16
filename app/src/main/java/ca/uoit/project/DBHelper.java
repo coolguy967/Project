@@ -8,6 +8,7 @@ public class DBHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "";
     private static final Integer DATABASE_VERSION = 1;
+    private static final String TABLE_NAME = "";
 
     public DBHelper(Context context)
     {
