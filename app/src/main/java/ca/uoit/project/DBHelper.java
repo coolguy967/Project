@@ -9,6 +9,7 @@ public class DBHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "";
     private static final Integer DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "";
+    private static final String COL_1 = "id";
 
     public DBHelper(Context context)
     {
@@ -18,7 +19,10 @@ public class DBHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        String create = "CREATE TABLE " + TABLE_NAME + " (" +
+                COL_1 + "Integer PRIMARY KEY AUTOINCREMENT" + ");";
 
+        db.execSQL(create);
     }
 
     @Override
