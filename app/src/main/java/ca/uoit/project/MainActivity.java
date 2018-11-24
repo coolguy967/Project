@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DBHelper(this);
-        btnAddData = (Button) findViewById(R.id.AddData); //id for button to add data
-        btnViewData = (Button) findViewById(R.id.ViewData); // id for button to view data
-        editText = (EditText) findViewById(R.id.editText); //id for search text feild
+        // btnAddData = (Button) findViewById(R.id.AddData); //id for button to add data
+        // btnViewData = (Button) findViewById(R.id.ViewData); // id for button to view data
+        // editText = (EditText) findViewById(R.id.editText); //id for search text feild
         myDb = new DBHelper(this);
 
         btnAddData.setOnClickListener(new View.OnClickListener()

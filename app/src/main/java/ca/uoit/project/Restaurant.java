@@ -1,5 +1,8 @@
 package ca.uoit.project;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ca.uoit.project.enumeration.Atmosphere;
 import ca.uoit.project.enumeration.ServingMethod;
 
@@ -9,11 +12,11 @@ public class Restaurant {
     public String name;
     public String address;
     public String foodType;
-    public double price;
+    public int price;
     public Atmosphere atmosphere;
     public ServingMethod servingMethod;
 
-    public Restaurant(int id, String name, String address, String foodType, double price, Atmosphere atmosphere, ServingMethod servingMethod) {
+    public Restaurant(int id, String name, String address, String foodType, int price, Atmosphere atmosphere, ServingMethod servingMethod) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -23,7 +26,7 @@ public class Restaurant {
         this.servingMethod = servingMethod;
     }
 
-    public Restaurant(String name, String address, String foodType, double price, Atmosphere atmosphere, ServingMethod servingMethod) {
+    public Restaurant(String name, String address, String foodType, int price, Atmosphere atmosphere, ServingMethod servingMethod) {
         this.name = name;
         this.address = address;
         this.foodType = foodType;
