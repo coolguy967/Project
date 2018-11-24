@@ -9,7 +9,9 @@ public enum Atmosphere {
     PREMIUM_CASUAL  (4, "Premium Casual"),
     FINE_DINING     (5, "Fine Dining");
 
+    // Database value for this enum value
     public final int value;
+    // UI Description for this enum value
     public final String description;
 
     private Atmosphere(int value, String description) {

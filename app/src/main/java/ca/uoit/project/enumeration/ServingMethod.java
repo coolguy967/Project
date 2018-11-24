@@ -6,7 +6,9 @@ public enum ServingMethod {
     TAKE_OUT(1, "Take Out"),
     DINE_IN (2, "Dine In");
 
+    // Database value for this enum value
     public final int value;
+    // UI Description for this enum value
     public final String description;
 
     private ServingMethod(int value, String description) {
