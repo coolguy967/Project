@@ -19,6 +19,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
+import ca.uoit.project.enumeration.Atmosphere;
+import ca.uoit.project.enumeration.ServingMethod;
+
 
 public class MainActivity extends AppCompatActivity
 {
@@ -26,48 +31,14 @@ public class MainActivity extends AppCompatActivity
     Button eatOutside;
     private static final String TAG = "MainActivity";
     DBHelper myDb;
-    private Button btnAddData, btnViewData;
-    private EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DBHelper(this);
-        // btnAddData = (Button) findViewById(R.id.AddData); //id for button to add data
-        // btnViewData = (Button) findViewById(R.id.ViewData); // id for button to view data
-        // editText = (EditText) findViewById(R.id.editText); //id for search text feild
-        myDb = new DBHelper(this);
-
-        btnAddData.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                String newEntry = editText.getText().toString();
-                if(editText.length() != 0)
-                {
-                    AddData(newEntry);
-                    editText.setText("");
-                }
-                else
-                {
-
-                }
-            }
-        });
-
-        btnViewData.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
-                startActivity(intent);
-            }
-        });
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        myDb.initDatabase();
 
         eatAtHome = (Button) findViewById(R.id.eat_at_home);
         eatOutside = (Button) findViewById(R.id.eat_outside);
@@ -88,17 +59,5 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-    }
-    private void AddData(String newEntry)
-    {
-        boolean insertData = myDb.addData(newEntry);
-        if (insertData)
-        {
-            //what to do when data added
-        }
-        else
-        {
-            //what to do when data not added successfully
-        }
     }
 }

@@ -15,4 +15,19 @@ public enum ServingMethod {
         this.value = value;
         this.description = description;
     }
+
+    /**
+     * Gets the enum value associated with the given integer
+     * @param value The integer value to find
+     * @return The enum value
+     */
+    public static ServingMethod get(int value) {
+        for(ServingMethod servingMethod : values()) {
+            if(value == servingMethod.value) {
+                return servingMethod;
+            }
+        }
+
+        return ANY;
+    }
 }
