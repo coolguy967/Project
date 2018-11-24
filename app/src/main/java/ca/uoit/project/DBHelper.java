@@ -1,39 +1,73 @@
 package ca.uoit.project;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper
 {
-    private static final String DATABASE_NAME = "d";
-    private static final Integer DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "d";
-    private static final String COL_1 = "id";
-    private static final String COL_2 = "";
-    private static final String COL_3 = "";
-    private static final String COL_4 = "";
-    private static final String COL_5 = "";
-    private static final String COL_6 = "";
+    private static final String TAG = "DBHelper";
+    private static final String TABLE_NAME = "Restaurants";
+    private static final String COL1 = "ID";
+    private static final String COL2 = "Name";
+    private static final String COL3 = "Address";
+    private static final String COL4 = "FoodType";
+    private static final String COL5 = "Price";
+    private static final String COL6 = "Atmosphere";
+    private static final String COL7 = "ServingMethod";
 
     public DBHelper(Context context)
     {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, TABLE_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String create = "CREATE TABLE " + TABLE_NAME + " (" +
-                COL_1 + "Integer PRIMARY KEY AUTOINCREMENT" + ");";
-
-        db.execSQL(create);
+        String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL2 + "TEXT" +
+                COL3 + "TEXT" +
+                COL4 + "TEXT" +
+                COL5 + "TEXT" +
+                COL6 + "TEXT" +
+                COL7 + "TEXT)";
+        db.execSQL(createTable);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int old_version, int new_version)
+    public void onUpgrade(SQLiteDatabase db, int i, int i1)
     {
-        db.execSQL("Drop Table " + TABLE_NAME + ";");
-        this.onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
+
+    public boolean addData(String item)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, item);
+
+        Log.d(TAG, "addData: Adding " + item + " to " + TABLE_NAME);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if (result == -1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public Cursor getData()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
+
 }
