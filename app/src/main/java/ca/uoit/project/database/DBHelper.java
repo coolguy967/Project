@@ -1,4 +1,4 @@
-package ca.uoit.project;
+package ca.uoit.project.database;
 
 import android.content.ContentValues;
 import android.content.Context;

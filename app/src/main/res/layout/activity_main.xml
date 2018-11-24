@@ -29,10 +29,10 @@
         android:entries="@array/food_array"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prices_in" />
+        app:layout_constraintTop_toBottomOf="@+id/price_in" />
 
     <Spinner
-        android:id="@+id/prices_in"
+        android:id="@+id/price_in"
         android:layout_width="247dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/atm_inp"
+        android:id="@+id/atm_in"
         android:layout_width="247dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -68,7 +68,7 @@
         android:entries="@array/serving_array"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/atm_inp" />
+        app:layout_constraintTop_toBottomOf="@+id/atm_in" />
 
     <Spinner
         android:id="@+id/dist_in"
@@ -94,7 +94,7 @@
         android:layout_marginRight="8dp"
         android:text="@string/preference_1_price"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/prices_in"
+        app:layout_constraintEnd_toStartOf="@+id/price_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,7 +124,7 @@
         android:layout_marginRight="8dp"
         android:text="@string/preference_3_atmosphere"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/atm_inp"
+        app:layout_constraintEnd_toStartOf="@+id/atm_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/food_label" />
 

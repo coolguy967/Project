@@ -33,4 +33,20 @@ public enum Atmosphere {
 
         return ANY;
     }
+
+    /**
+     * Get the enum value for the given description string
+     * @param string The description of the enum value
+     * @return The enum value
+     */
+    public static Atmosphere fromString(String string) {
+        for(Atmosphere atmosphere : values()) {
+            if(string.equals(atmosphere.description)) {
+                return atmosphere;
+            }
+        }
+
+        return ANY;
+    }
+
 }

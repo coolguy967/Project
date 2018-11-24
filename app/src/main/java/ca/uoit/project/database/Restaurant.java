@@ -1,4 +1,4 @@
-package ca.uoit.project;
+package ca.uoit.project.database;
 
 import java.util.ArrayList;
 import java.util.List;

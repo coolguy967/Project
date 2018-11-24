@@ -1,63 +1,70 @@
 package ca.uoit.project;
 
-import android.app.ActionBar;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.List;
 
+import ca.uoit.project.database.DBHelper;
+import ca.uoit.project.database.Restaurant;
 import ca.uoit.project.enumeration.Atmosphere;
 import ca.uoit.project.enumeration.ServingMethod;
 
 
-public class MainActivity extends AppCompatActivity
-{
-    Button eatAtHome;
-    Button eatOutside;
+public class MainActivity extends AppCompatActivity {
+
     private static final String TAG = "MainActivity";
     DBHelper myDb;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDb = new DBHelper(this);
         myDb.initDatabase();
 
-        eatAtHome = (Button) findViewById(R.id.eat_at_home);
-        eatOutside = (Button) findViewById(R.id.eat_outside);
+        Button res_search = findViewById(R.id.res_search);
 
-        eatAtHome.setOnClickListener(new View.OnClickListener() {
+        final Spinner food_in = findViewById(R.id.food_in);
+        final Spinner price_in = findViewById(R.id.price_in);
+        final Spinner atm_in = findViewById(R.id.atm_in);
+        final Spinner serv_in = findViewById(R.id.serv_in);
+        final Spinner dist_in = findViewById(R.id.dist_in);
+
+        res_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), EatAtHome.class);
-                startActivity(intent);
+                // Get data from screen
+                String          foodType        = (String) food_in .getItemAtPosition(food_in .getSelectedItemPosition());
+                String          priceStr        = (String) price_in.getItemAtPosition(price_in.getSelectedItemPosition());
+                String          distance        = (String) dist_in .getItemAtPosition(dist_in .getSelectedItemPosition());
+
+                Atmosphere      atmosphere      = Atmosphere   .fromString((String) atm_in .getItemAtPosition(atm_in .getSelectedItemPosition()));
+                ServingMethod   servingMethod   = ServingMethod.fromString((String) serv_in.getItemAtPosition(serv_in.getSelectedItemPosition()));
+
+                int price = 0;
+
+                // Parse price as integer
+                if(!priceStr.equals("Any")) {
+                    // Find the dollar sign
+                    int index = priceStr.indexOf('$');
+
+                    // Parse the number after the dollar sign as an integer
+                    price = Integer.parseInt(priceStr.substring(index + 1));
+                }
+
+                // Search for appropriate restaurants given the user's input
+                List<Restaurant> restaurantList = myDb.findRestaurants(foodType, price, atmosphere, servingMethod);
+
+                // Temporarily print the restaurants
+                // TODO: Start a new activity to display restaurants to users properly
+                for(Restaurant restaurant: restaurantList) {
+                    System.out.println(restaurant.name);
+                }
             }
         });
-
-        eatOutside.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), EatOutside.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }

@@ -17,13 +17,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".EatAtHome"
-            android:parentActivityName="ca.uoit.project.MainActivity" />
-
-        <activity
-            android:name=".EatOutside"
-            android:parentActivityName="ca.uoit.project.MainActivity"/>
     </application>
 
 </manifest>
