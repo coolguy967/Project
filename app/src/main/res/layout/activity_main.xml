@@ -7,41 +7,156 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/eat_outside"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="92dp"
-        android:text="Outside"
-        android:textSize="18sp"
+        android:id="@+id/res_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/what_s_to_eat"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eat_at_home" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/food_in"
+        android:layout_width="247dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:entries="@array/food_array"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prices_in" />
+
+    <Spinner
+        android:id="@+id/prices_in"
+        android:layout_width="247dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:entries="@array/prices_array"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/atm_inp"
+        android:layout_width="247dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:entries="@array/atmosphere_array"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_in" />
+
+    <Spinner
+        android:id="@+id/serv_in"
+        android:layout_width="247dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:entries="@array/serving_array"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atm_inp" />
+
+    <Spinner
+        android:id="@+id/dist_in"
+        android:layout_width="247dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:entries="@array/distance_array"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv_in" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="84dp"
-        android:text="Where would you like to eat today?"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/prices_label"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/preference_1_price"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/prices_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/eat_at_home"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="92dp"
-        android:text="At Home"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/food_label"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/preference_2_food"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/food_in"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/prices_label" />
+
+    <TextView
+        android:id="@+id/atm_label"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/preference_3_atmosphere"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/atm_inp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/food_label" />
+
+    <TextView
+        android:id="@+id/serv_label"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/preference_4_serving_method"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/serv_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atm_label" />
+
+    <TextView
+        android:id="@+id/dist_label"
+        android:layout_width="139dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/preference_5_distance"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/dist_in"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/serv_label" />
+
 </android.support.constraint.ConstraintLayout>
