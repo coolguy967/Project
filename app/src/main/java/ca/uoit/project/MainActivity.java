@@ -1,5 +1,6 @@
 package ca.uoit.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -64,6 +65,18 @@ public class MainActivity extends AppCompatActivity {
                 for(Restaurant restaurant: restaurantList) {
                     System.out.println(restaurant.name);
                 }
+
+                //Intent to start next activity
+                Intent intent = new Intent(getBaseContext(), ListDataActivity.class);
+
+                //Passing relevant information to the next activity
+                intent.putExtra("foodtype", foodType);
+                intent.putExtra("price", price);
+                intent.putExtra("atmosphere", atmosphere);
+                intent.putExtra("serving", servingMethod);
+
+                //Beginning the next activity
+                startActivity(intent);
             }
         });
     }
