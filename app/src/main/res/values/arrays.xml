@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="prices_array">
+        <item>Any</item>
+        <item>&lt; $5</item>
+        <item>&lt; $10</item>
+        <item>&lt; $20</item>
+        <item>&lt; $50</item>
+        <item>&lt; $100</item>
+    </string-array>
+    <string-array name="food_array">
+        <item>Any</item>
+        <item>Seafood</item>
+        <item>Pizza</item>
+        <item>Burgers</item>
+        <item>Indian</item>
+        <item>Chinese</item>
+        <item>Steak</item>
+        <item>Sushi</item>
+        <item>Coffee</item>
+        <item>Italian</item>
+        <item>Dessert</item>
+        <item>Sandwiches</item>
+        <item>Greek</item>
+        <item>Soul Food</item>
+    </string-array>
+    <string-array name="atmosphere_array">
+        <item>Any</item>
+        <item>Fast Food</item>
+        <item>Fast Casual</item>
+        <item>Casual</item>
+        <item>Premium Casual</item>
+        <item>Fine Dining</item>
+    </string-array>
+    <string-array name="serving_array">
+        <item>Any</item>
+        <item>Dine-in</item>
+        <item>Take-out</item>
+    </string-array>
+    <string-array name="distance_array">
+        <item>Any</item>
+        <item>&lt; 1 km (1 Minute Drive)</item>
+        <item>&lt; 5 km (5 Minute Drive)</item>
+        <item>&lt; 10 km (10 Minute Drive)</item>
+        <item>&lt; 25 km (20 Minute Drive)</item>
+        <item>&lt; 50 km (30 Minute Drive)</item>
+    </string-array>
+</resources>

@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Project</string>
+<string name="what_s_to_eat">What\'s To Eat?</string>
+<string name="price">Price</string>
+<string name="preference_5_distance">Preference 5: Distance</string>
+<string name="preference_4_serving_method">Preference 4: Serving Method</string>
+<string name="preference_3_atmosphere">Preference 3: Atmosphere</string>
+<string name="preference_2_food">Preference 2: Food</string>
+<string name="preference_1_price">Preference 1: Price</string>
 </resources>
