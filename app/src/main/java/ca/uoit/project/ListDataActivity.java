@@ -42,16 +42,12 @@ public class ListDataActivity extends AppCompatActivity
         Atmosphere atmosphere = (Atmosphere) intent.getSerializableExtra("atmosphere");
         ServingMethod servingMethod = (ServingMethod) intent.getSerializableExtra("serving");
 
-        //to get data and append to list
-        Cursor data = mDataBaseHelper.getData();
+        System.out.println(price + " " + foodType + " " + atmosphere + " " + servingMethod);
+
         List<Restaurant> listData = mDataBaseHelper.findRestaurants(foodType, price, atmosphere, servingMethod);
 
-        /*while(data.moveToNext())
-        {
-            listData.add(data.getString(1));
-        }*/
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        RestaurantAdapter adapter = new RestaurantAdapter(getBaseContext(), 0, listData);
         mlistView.setAdapter(adapter);
     }
 }
