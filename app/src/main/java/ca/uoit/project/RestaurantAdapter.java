@@ -1,7 +1,6 @@
 package ca.uoit.project;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         restaurant = restaurants.get(position);
 
         resName.setText("Name: " + restaurant.name);
-        resAddress.setText("Address: " + restaurant.address);
+        resAddress.setText("Address: " + restaurant.location);
         resType.setText("Food type: " + restaurant.foodType);
         resPrice.setText("Average price: $" + restaurant.price);
         resAtmosphere.setText("Atmosphere: " + restaurant.atmosphere.description);

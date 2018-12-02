@@ -33,8 +33,7 @@ public class ListDataActivity extends AppCompatActivity
         populateListView();
     }
 
-    private void populateListView()
-    {
+    private void populateListView() {
         Intent intent = getIntent();
 
         int price = intent.getIntExtra("price", 0);
