@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COL8 = "Favourite";
 
     private static final Map<String, Integer> foodTypeFavourites = new HashMap<String, Integer>();
-    private static final Map<String, Integer> locationfavourites = new HashMap<String, Integer>();
+    private static final Map<String, Integer> locationFavourites = new HashMap<String, Integer>();
     private static final Map<String, Integer> atmosphereFavourites = new HashMap<String, Integer>();
 
     public DBHelper(Context context) {
@@ -100,8 +100,8 @@ public class DBHelper extends SQLiteOpenHelper {
             atmosphereFavourites.put(restaurant.atmosphere.description,
                     atmosphereFavourites.getOrDefault(restaurant.atmosphere.description, 0) + 1);
             // Increment the location
-            locationfavourites.put(restaurant.location,
-                    locationfavourites.getOrDefault(restaurant.location, 0) + 1);
+            locationFavourites.put(restaurant.location,
+                    locationFavourites.getOrDefault(restaurant.location, 0) + 1);
 
             // Increment all food types
             String[] foodTypes = restaurant.foodType.split(", ");
@@ -114,8 +114,8 @@ public class DBHelper extends SQLiteOpenHelper {
             atmosphereFavourites.put(restaurant.atmosphere.description,
                     atmosphereFavourites.getOrDefault(restaurant.atmosphere.description, 0) - 1);
             // Decrement the location
-            locationfavourites.put(restaurant.location,
-                    locationfavourites.getOrDefault(restaurant.location, 0) - 1);
+            locationFavourites.put(restaurant.location,
+                    locationFavourites.getOrDefault(restaurant.location, 0) - 1);
 
             // Decrement all food types
             String[] foodTypes = restaurant.foodType.split(", ");
@@ -360,7 +360,7 @@ public class DBHelper extends SQLiteOpenHelper {
         });
 
         // Sort by location based on favourite location
-        final String favLocation = getFavourite(locationfavourites);
+        final String favLocation = getFavourite(locationFavourites);
         restaurantLs.sort(new Comparator<Restaurant>() {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {
