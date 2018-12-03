@@ -45,7 +45,6 @@ public class ListDataActivity extends AppCompatActivity
 
         List<Restaurant> listData = mDataBaseHelper.findRestaurants(foodType, price, atmosphere, servingMethod);
 
-
         RestaurantAdapter adapter = new RestaurantAdapter(getBaseContext(), 0, listData);
         mlistView.setAdapter(adapter);
     }

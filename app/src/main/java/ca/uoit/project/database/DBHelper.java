@@ -152,7 +152,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL8, restaurant.favourite);
 
         // Update restaurant
-        long result = db.update(TABLE_NAME, contentValues, "WHERE", new String[] { COL1 + " = " + restaurant.id});
+        long result = db.update(TABLE_NAME, contentValues, COL1 + " = ?", new String[] {" = " + restaurant.id});
 
         return result != -1;
     }

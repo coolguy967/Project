@@ -1,11 +1,13 @@
 package ca.uoit.project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.support.annotation.NonNull;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private List<Restaurant> restaurants;
     private Restaurant restaurant;
+    LinearLayout layout;
     Context con;
 
     public RestaurantAdapter(Context context, int resource, List<Restaurant> lst)
@@ -39,24 +42,30 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
         View row = inflater.inflate(R.layout.restaurant_template, null, true);
 
-        TextView resName = (TextView)row.findViewById(R.id.resName);
-        TextView resAddress = (TextView)row.findViewById(R.id.resAddress);
-        TextView resType = (TextView)row.findViewById(R.id.resType);
-        TextView resPrice = (TextView)row.findViewById(R.id.resPrice);
-        TextView resAtmosphere = (TextView)row.findViewById(R.id.resAtmosphere);
-        TextView resServing = (TextView)row.findViewById(R.id.resServing);
+        TextView resName = (TextView)row.findViewById(R.id.restaurant_Name);
+        layout = (LinearLayout) row.findViewById(R.id.Linearlayout);
 
         restaurant = restaurants.get(position);
 
-        resName.setText("Name: " + restaurant.name);
-        resAddress.setText("Address: " + restaurant.location);
-        resType.setText("Food type: " + restaurant.foodType);
-        resPrice.setText("Average price: $" + restaurant.price);
-        resAtmosphere.setText("Atmosphere: " + restaurant.atmosphere.description);
-        resServing.setText("Serving Method: " + restaurant.servingMethod.description);
+        resName.setText(restaurant.name);
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(con, restaurantViewActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                intent.putExtra("name", restaurant.name);
+                intent.putExtra("address", restaurant.location);
+                intent.putExtra("price", restaurant.price);
+                intent.putExtra("type", restaurant.foodType);
+                intent.putExtra("serving", restaurant.servingMethod);
+                intent.putExtra("atmosphere", restaurant.atmosphere);
+
+                con.startActivity(intent);
+            }
+        });
 
         return row;
-
-        //return super.getView(position, convertView, parent);
     }
 }
