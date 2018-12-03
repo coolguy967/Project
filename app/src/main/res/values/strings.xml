@@ -7,4 +7,12 @@
     <string name="preference_3_atmosphere">Preference 3: Atmosphere</string>
     <string name="preference_2_food">Preference 2: Food</string>
     <string name="preference_1_price">Preference 1: Price</string>
+    <string name="restaurant_name">Restaurant Name:</string>
+    <string name="location">Location:</string>
+    <string name="price1">Price:</string>
+    <string name="textview">TextView</string>
+    <string name="like">Like</string>
+    <string name="food_type">Food Type:</string>
+    <string name="atmosphere">Atmosphere:</string>
+    <string name="serving_method">Serving Method:</string>
 </resources>
