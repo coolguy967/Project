@@ -56,7 +56,8 @@ public class DBHelper extends SQLiteOpenHelper {
      * Add restaurants to database if the database is empty
      */
     public void initDatabase() {
-        addRestaurant("Subway", "1769 Western Crescent", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Subway", "Oshawa", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Not Subway", "Oshawa", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Bang Bang Burrito", "1769 Western Crescent", "Burgers", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Mc Donald's", "1769 Western Crescent", "Burgers", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Starbucks", "1769 Western Crescent", "Coffee", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);

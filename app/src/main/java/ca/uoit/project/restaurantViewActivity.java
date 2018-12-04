@@ -43,8 +43,6 @@ public class restaurantViewActivity extends AppCompatActivity {
 
         final Restaurant restaurant = new Restaurant(id, name, address, type, price, atmosphere, serving, favourite);
 
-        System.out.println(restaurant.id + " " + restaurant.name + " " + restaurant.location + " " + restaurant.foodType + " " + restaurant.atmosphere.description + " " + restaurant.servingMethod.description + " " + restaurant.favourite);
-
         resName = (TextView) findViewById(R.id.resName);
         resAddress = (TextView) findViewById(R.id.resAddress);
         resPrice = (TextView) findViewById(R.id.resPrice);
