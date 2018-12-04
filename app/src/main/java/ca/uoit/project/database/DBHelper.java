@@ -58,11 +58,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void initDatabase() {
         addRestaurant("Subway", "Oshawa", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Not Subway", "Oshawa", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
-        addRestaurant("Bang Bang Burrito", "1769 Western Crescent", "Burgers", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
-        addRestaurant("Mc Donald's", "1769 Western Crescent", "Burgers", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
-        addRestaurant("Starbucks", "1769 Western Crescent", "Coffee", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
-        addRestaurant("Tim Hortons", "1769 Western Crescent", "Coffee", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
-        addRestaurant("Swiss Chalet", "1769 Western Crescent", "Italian", 20, Atmosphere.CASUAL, ServingMethod.ANY);
+        addRestaurant("Bang Bang Burrito", "Oshawa", "Burgers", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Mc Donald's", "Toronto", "Burgers", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Starbucks", "Oshawa", "Coffee", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Tim Hortons", "Oshawa", "Coffee", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
+        addRestaurant("Swiss Chalet", "Toronto", "Italian", 20, Atmosphere.CASUAL, ServingMethod.ANY);
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
