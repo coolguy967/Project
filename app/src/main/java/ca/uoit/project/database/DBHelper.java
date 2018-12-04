@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * Add restaurants to database if the database is empty
      */
     public void initDatabase() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
 
         addRestaurant("Subway", "1769 Western Crescent", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
@@ -149,7 +149,12 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL5, restaurant.price);
         contentValues.put(COL6, restaurant.atmosphere.value);
         contentValues.put(COL7, restaurant.servingMethod.value);
-        contentValues.put(COL8, restaurant.favourite);
+
+        if(restaurant.favourite) {
+            contentValues.put(COL8, 1);
+        } else {
+            contentValues.put(COL8, 0);
+        }
 
         // Update restaurant
         long result = db.update(TABLE_NAME, contentValues, COL1 + " = ?", new String[] {" = " + restaurant.id});
@@ -180,6 +185,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL5, restaurant.price);
         contentValues.put(COL6, restaurant.atmosphere.value);
         contentValues.put(COL7, restaurant.servingMethod.value);
+        contentValues.put(COL8, 0);
 
         // Insert new restaurant
         long result = db.insert(TABLE_NAME, null, contentValues);
@@ -209,6 +215,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(COL5, price);
         contentValues.put(COL6, atmosphere.value);
         contentValues.put(COL7, servingMethod.value);
+        contentValues.put(COL8, 0);
 
         // Insert new restaurant
         long result = db.insert(TABLE_NAME, null, contentValues);
