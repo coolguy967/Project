@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 List<Restaurant> restaurantList = myDb.findRestaurants(foodType, price, atmosphere, servingMethod);
 
                 // Temporarily print the restaurants
-                // TODO: Start a new activity to display restaurants to users properly
                 for(Restaurant restaurant: restaurantList) {
                     System.out.println(restaurant.name);
                 }
