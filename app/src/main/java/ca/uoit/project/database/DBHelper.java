@@ -260,7 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param servingMethod The serving method of the restaurant
      * @return A list of restaurants that match the search criteria
      */
-    public List<Restaurant> findRestaurants(String foodType, int price, Atmosphere atmosphere, ServingMethod servingMethod) {
+    public List<Restaurant> findRestaurants(String foodType, String location, int price, Atmosphere atmosphere, ServingMethod servingMethod) {
         ArrayList<Restaurant> restaurantLs = new ArrayList<Restaurant>();
 
         // Start with SELECT statement
@@ -291,6 +291,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
             // Add price condition
             query += COL5 + " <= " + price;
+        }
+
+        if (!location.isEmpty() && !location.equals("Any")) {
+            if (!where) {
+                // WHERE statement is not yet in the query, insert it before location condition
+                query += " WHERE ";
+                // The WHERE statement is now in the query
+                where = true;
+            } else {
+                // WHERE is already in the query, add AND before location condition
+                query += " AND ";
+            }
+
+            // Add location condition
+            query += COL3 + " = \"" + location + "\"";
         }
 
         if (servingMethod != ServingMethod.ANY) {

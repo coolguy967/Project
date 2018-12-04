@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         final Spinner price_in = findViewById(R.id.price_in);
         final Spinner atm_in = findViewById(R.id.atm_in);
         final Spinner serv_in = findViewById(R.id.serv_in);
-        final Spinner dist_in = findViewById(R.id.dist_in);
+        final Spinner loc_in = findViewById(R.id.dist_in);
 
         res_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 // Get data from screen
                 String          foodType        = (String) food_in .getItemAtPosition(food_in .getSelectedItemPosition());
                 String          priceStr        = (String) price_in.getItemAtPosition(price_in.getSelectedItemPosition());
-                String          distance        = (String) dist_in .getItemAtPosition(dist_in .getSelectedItemPosition());
+                String          location        = (String) loc_in  .getItemAtPosition(loc_in  .getSelectedItemPosition());
 
                 Atmosphere      atmosphere      = Atmosphere   .fromString((String) atm_in .getItemAtPosition(atm_in .getSelectedItemPosition()));
                 ServingMethod   servingMethod   = ServingMethod.fromString((String) serv_in.getItemAtPosition(serv_in.getSelectedItemPosition()));
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getBaseContext(), ListDataActivity.class);
 
                 //Passing relevant information to the next activity
+                intent.putExtra("location", location);
                 intent.putExtra("foodtype", foodType);
                 intent.putExtra("price", price);
                 intent.putExtra("atmosphere", atmosphere);

@@ -37,13 +37,14 @@ public class ListDataActivity extends AppCompatActivity
         Intent intent = getIntent();
 
         int price = intent.getIntExtra("price", 0);
+        String location = intent.getStringExtra("location");
         String foodType = intent.getStringExtra("foodtype");
         Atmosphere atmosphere = (Atmosphere) intent.getSerializableExtra("atmosphere");
         ServingMethod servingMethod = (ServingMethod) intent.getSerializableExtra("serving");
 
         System.out.println(price + " " + foodType + " " + atmosphere.description + " " + servingMethod.description);
 
-        List<Restaurant> listData = mDataBaseHelper.findRestaurants(foodType, price, atmosphere, servingMethod);
+        List<Restaurant> listData = mDataBaseHelper.findRestaurants(foodType, location, price, atmosphere, servingMethod);
 
         RestaurantAdapter adapter = new RestaurantAdapter(getBaseContext(), 0, listData);
         mlistView.setAdapter(adapter);
