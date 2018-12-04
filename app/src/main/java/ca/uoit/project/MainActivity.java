@@ -57,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
                     price = Integer.parseInt(priceStr.substring(index + 1));
                 }
 
-                // Search for appropriate restaurants given the user's input
-                List<Restaurant> restaurantList = myDb.findRestaurants(foodType, price, atmosphere, servingMethod);
-
-                // Temporarily print the restaurants
-                for(Restaurant restaurant: restaurantList) {
-                    System.out.println(restaurant.name);
-                }
-
                 //Intent to start next activity
                 Intent intent = new Intent(getBaseContext(), ListDataActivity.class);
 

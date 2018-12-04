@@ -17,7 +17,6 @@ import ca.uoit.project.database.Restaurant;
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private List<Restaurant> restaurants;
-    private Restaurant restaurant;
     LinearLayout layout;
     Context con;
 
@@ -45,7 +44,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         TextView resName = (TextView)row.findViewById(R.id.restaurant_Name);
         layout = (LinearLayout) row.findViewById(R.id.Linearlayout);
 
-        restaurant = restaurants.get(position);
+        final Restaurant restaurant = restaurants.get(position);
 
         resName.setText(restaurant.name);
 
@@ -55,12 +54,14 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
                 Intent intent = new Intent(con, restaurantViewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                intent.putExtra("id", restaurant.id);
                 intent.putExtra("name", restaurant.name);
                 intent.putExtra("address", restaurant.location);
                 intent.putExtra("price", restaurant.price);
                 intent.putExtra("type", restaurant.foodType);
                 intent.putExtra("serving", restaurant.servingMethod);
                 intent.putExtra("atmosphere", restaurant.atmosphere);
+                intent.putExtra("favourite", restaurant.favourite);
 
                 con.startActivity(intent);
             }

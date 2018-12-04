@@ -41,7 +41,7 @@ public class ListDataActivity extends AppCompatActivity
         Atmosphere atmosphere = (Atmosphere) intent.getSerializableExtra("atmosphere");
         ServingMethod servingMethod = (ServingMethod) intent.getSerializableExtra("serving");
 
-        System.out.println(price + " " + foodType + " " + atmosphere + " " + servingMethod);
+        System.out.println(price + " " + foodType + " " + atmosphere.description + " " + servingMethod.description);
 
         List<Restaurant> listData = mDataBaseHelper.findRestaurants(foodType, price, atmosphere, servingMethod);
 

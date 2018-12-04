@@ -15,4 +15,5 @@
     <string name="food_type">Food Type:</string>
     <string name="atmosphere">Atmosphere:</string>
     <string name="serving_method">Serving Method:</string>
+    <string name="favourite">Favorite:</string>
 </resources>

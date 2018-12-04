@@ -56,9 +56,6 @@ public class DBHelper extends SQLiteOpenHelper {
      * Add restaurants to database if the database is empty
      */
     public void initDatabase() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME);
-
         addRestaurant("Subway", "1769 Western Crescent", "Sandwiches", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Bang Bang Burrito", "1769 Western Crescent", "Burgers", 10, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Mc Donald's", "1769 Western Crescent", "Burgers", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
@@ -66,6 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
         addRestaurant("Tim Hortons", "1769 Western Crescent", "Coffee", 5, Atmosphere.FAST_FOOD, ServingMethod.ANY);
         addRestaurant("Swiss Chalet", "1769 Western Crescent", "Italian", 20, Atmosphere.CASUAL, ServingMethod.ANY);
 
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         while (c.moveToNext()) {
@@ -157,7 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         // Update restaurant
-        long result = db.update(TABLE_NAME, contentValues, COL1 + " = ?", new String[] {" = " + restaurant.id});
+        long result = db.update(TABLE_NAME, contentValues,COL1 + " = " + restaurant.id, null);
 
         return result != -1;
     }
@@ -175,22 +173,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @return true if the insert statement succeeded
      */
     public boolean addRestaurant(Restaurant restaurant) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        // Add restaurant to contentValues
-        contentValues.put(COL2, restaurant.name);
-        contentValues.put(COL3, restaurant.location);
-        contentValues.put(COL4, restaurant.foodType);
-        contentValues.put(COL5, restaurant.price);
-        contentValues.put(COL6, restaurant.atmosphere.value);
-        contentValues.put(COL7, restaurant.servingMethod.value);
-        contentValues.put(COL8, 0);
-
-        // Insert new restaurant
-        long result = db.insert(TABLE_NAME, null, contentValues);
-
-        return result != -1;
+        return addRestaurant(restaurant.name, restaurant.location, restaurant.foodType, restaurant.price, restaurant.atmosphere, restaurant.servingMethod);
     }
 
     /**
@@ -206,21 +189,28 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public boolean addRestaurant(String name, String location, String foodType, int price, Atmosphere atmosphere, ServingMethod servingMethod) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
 
-        // Add passed values to contentValues
-        contentValues.put(COL2, name);
-        contentValues.put(COL3, location);
-        contentValues.put(COL4, foodType);
-        contentValues.put(COL5, price);
-        contentValues.put(COL6, atmosphere.value);
-        contentValues.put(COL7, servingMethod.value);
-        contentValues.put(COL8, 0);
+        // Check if this restaurant is already in the database
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL2 + " = \"" + name + "\"", null);
+        if(!c.moveToNext()) {
+            ContentValues contentValues = new ContentValues();
 
-        // Insert new restaurant
-        long result = db.insert(TABLE_NAME, null, contentValues);
+            // Add passed values to contentValues
+            contentValues.put(COL2, name);
+            contentValues.put(COL3, location);
+            contentValues.put(COL4, foodType);
+            contentValues.put(COL5, price);
+            contentValues.put(COL6, atmosphere.value);
+            contentValues.put(COL7, servingMethod.value);
+            contentValues.put(COL8, 0);
 
-        return result != -1;
+            // Insert new restaurant
+            long result = db.insert(TABLE_NAME, null, contentValues);
+
+            return result != -1;
+        }
+
+        return false;
     }
 
     public Cursor getData() {
@@ -349,6 +339,8 @@ public class DBHelper extends SQLiteOpenHelper {
             public int compare(Restaurant r1, Restaurant r2) {
                 if(r1.atmosphere == favAtmosphere) {
                     return -1;
+                } else if(r2.atmosphere == favAtmosphere) {
+                    return 1;
                 }
                 return 0;
             }
@@ -361,6 +353,8 @@ public class DBHelper extends SQLiteOpenHelper {
             public int compare(Restaurant r1, Restaurant r2) {
                 if(r1.foodType.contains(favFoodType)) {
                     return -1;
+                } else if(r2.foodType.contains(favFoodType)) {
+                    return 1;
                 }
                 return 0;
             }
@@ -372,6 +366,8 @@ public class DBHelper extends SQLiteOpenHelper {
             @Override
             public int compare(Restaurant r1, Restaurant r2) {
                 if(r1.location.equals(favLocation)) {
+                    return 1;
+                } else if(r2.location.equals(favLocation)) {
                     return -1;
                 }
                 return 0;

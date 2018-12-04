@@ -22,7 +22,7 @@ public class restaurantViewActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     DBHelper myDb;
 
-    TextView resName, resAddress, resPrice, resType, resServing, resAtmosphere;
+    TextView resName, resAddress, resPrice, resType, resServing, resAtmosphere, resFavourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +32,16 @@ public class restaurantViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        int id = intent.getIntExtra("id", 0);
         String name = intent.getStringExtra("name");
         String address = intent.getStringExtra("address");
         int price = intent.getIntExtra("price", 0);
         String type = intent.getStringExtra("type");
         ServingMethod serving = (ServingMethod) intent.getSerializableExtra("serving");
         Atmosphere atmosphere = (Atmosphere) intent.getSerializableExtra("atmosphere");
+        boolean favourite = intent.getBooleanExtra("favourite", false);
 
-        final Restaurant restaurant = new Restaurant(0, name, address, type, price, atmosphere, serving, false);
+        final Restaurant restaurant = new Restaurant(id, name, address, type, price, atmosphere, serving, favourite);
 
         System.out.println(restaurant.id + " " + restaurant.name + " " + restaurant.location + " " + restaurant.foodType + " " + restaurant.atmosphere.description + " " + restaurant.servingMethod.description + " " + restaurant.favourite);
 
@@ -49,6 +51,7 @@ public class restaurantViewActivity extends AppCompatActivity {
         resType = (TextView) findViewById(R.id.resType);
         resServing = (TextView) findViewById(R.id.resServing);
         resAtmosphere = (TextView) findViewById(R.id.resAtmosphere);
+        resFavourite = (TextView) findViewById(R.id.resFavourite);
 
         resName.setText(name);
         resAddress.setText(address);
@@ -56,6 +59,7 @@ public class restaurantViewActivity extends AppCompatActivity {
         resType.setText(type);
         resServing.setText(serving.description);
         resAtmosphere.setText(atmosphere.description);
+        resFavourite.setText(Boolean.toString(favourite));
 
         Button like = findViewById(R.id.like);
         like.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,8 @@ public class restaurantViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Pass the restaurant that's used to populate this page to this function in place of resName
                 myDb.toggleFavorite(restaurant);
+
+                resFavourite.setText(Boolean.toString(restaurant.favourite));
             }
         });
     }
